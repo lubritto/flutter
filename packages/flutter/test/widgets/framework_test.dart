@@ -1941,6 +1941,15 @@ The findRenderObject() method was called for the following element:
     expect(scopeElement.dirty, isFalse);
     expect(keyedWidget.dirty, isTrue);
   });
+
+  testWidgets('Parent data with invalid render object presents ErrorWidget', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const Expanded(
+        child: SizedBox(),
+      ),
+    );
+    expect(find.byType(ErrorWidget), findsOneWidget);
+  });
 }
 
 class _TestInheritedElement extends InheritedElement {
